@@ -32,4 +32,8 @@ packer.startup(function(use)
   use 'windwp/nvim-ts-autotag'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }
 end)
