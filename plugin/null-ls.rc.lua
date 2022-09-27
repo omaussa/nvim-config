@@ -21,7 +21,11 @@ end
 null_ls.setup {
   sources = {
     null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
+      diagnostics_format = '[eslint] #{m}\n(#{c})',
+      condition = function(utils)
+        --return utils.root_has_file({'.eslintrc.js', '.eslintrc.cjs', '.eslintrc.yaml', '.eslintrc.yml', '.eslintrc.json'})
+        return utils.root_has_file({'node_modules/.bin/eslint'})
+      end
     }),
     null_ls.builtins.diagnostics.zsh
   },
