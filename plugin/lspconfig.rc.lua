@@ -23,6 +23,8 @@ if (status2) then
   capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 end
 
+lspconfig.astro.setup {}
+
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
