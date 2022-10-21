@@ -50,3 +50,20 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.yamlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemas = {
+        --kubernetes = "globPattern",
+        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*",
+      },
+    }
+  }
+}
