@@ -17,6 +17,7 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+local util = require('lspconfig/util')
 
 local status2, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if (status2) then
@@ -53,6 +54,17 @@ lspconfig.sumneko_lua.setup {
 lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  cmd = {"gopls", "serve"},
+  filetypes = {"go", "gomod"},
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
 }
 
 lspconfig.yamlls.setup {

@@ -23,6 +23,8 @@ ts.setup {
     "lua",
     "typescript",
     "astro",
+    "go",
+    "c",
   },
   autotag = {
     enable = true,
