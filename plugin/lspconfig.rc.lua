@@ -17,13 +17,12 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+local util = require('lspconfig/util')
 
 local status2, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if (status2) then
   capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 end
-
-lspconfig.gopls.setup {}
 
 lspconfig.tsserver.setup {
   on_attach = on_attach,
@@ -50,4 +49,31 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
-lspconfig.astro.setup {}
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {"gopls", "serve"},
+  filetypes = {"go", "gomod"},
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
+
+lspconfig.yamlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemas = {
+        --kubernetes = "globPattern",
+        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*",
+      },
+    }
+  }
+}
