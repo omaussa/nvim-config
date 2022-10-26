@@ -23,9 +23,11 @@ if (status2) then
   capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 end
 
+lspconfig.gopls.setup {}
+
 lspconfig.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
+  filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript' },
   cmd = { 'typescript-language-server', '--stdio' },
   capabilities = capabilities
 }
@@ -48,3 +50,4 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
+lspconfig.astro.setup {}

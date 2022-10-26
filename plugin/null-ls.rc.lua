@@ -18,16 +18,21 @@ local on_attach = function(client, bufnr)
   end
 end
 
-null_ls.setup {
-  sources = {
-    null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})',
-      condition = function(utils)
-        --return utils.root_has_file({'.eslintrc.js', '.eslintrc.cjs', '.eslintrc.yaml', '.eslintrc.yml', '.eslintrc.json'})
-        return utils.root_has_file({'node_modules/.bin/eslint'})
-      end
-    }),
-    null_ls.builtins.diagnostics.zsh
-  },
-  on_attach = on_attach
+local sources = {
+  null_ls.builtins.diagnostics.eslint_d.with({
+    diagnostics_format = '[eslint] #{m}\n(#{c})',
+    condition = function(utils)
+      --return utils.root_has_file({'.eslintrc.js', '.eslintrc.cjs', '.eslintrc.yaml', '.eslintrc.yml', '.eslintrc.json'})
+      return utils.root_has_file({'node_modules/.bin/eslint'})
+    end
+  }),
+  null_ls.builtins.diagnostics.zsh,
+  null_ls.builtins.formatting.goimports,
+  null_ls.builtins.formatting.gofmt,
+  null_ls.builtins.formatting.goimports_reviser,
 }
+
+null_ls.setup({
+  sources = sources,
+  on_attach = on_attach
+})
