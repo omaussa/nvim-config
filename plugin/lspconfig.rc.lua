@@ -21,7 +21,7 @@ local util = require('lspconfig/util')
 
 local status2, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if (status2) then
-  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+  capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 end
 
 lspconfig.tsserver.setup {
