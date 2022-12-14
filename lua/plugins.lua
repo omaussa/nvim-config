@@ -37,4 +37,5 @@ packer.startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   }
   use 'gpanders/editorconfig.nvim'
+  use("simrat39/rust-tools.nvim")
 end)

@@ -31,6 +31,7 @@ local sources = {
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.goimports_reviser,
+    null_ls.builtins.formatting.rustfmt,
 }
 
 null_ls.setup({

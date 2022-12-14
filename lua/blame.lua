@@ -49,9 +49,9 @@ function M.clearBlameVirtText() -- important for clearing out the text when our 
     api.nvim_buf_clear_namespace(0, namespace, 0, -1)
 end
 
-api.nvim_command [[autocmd CursorHold   * lua require'utils'.blameVirtText()]]
-api.nvim_command [[autocmd CursorMoved  * lua require'utils'.clearBlameVirtText()]]
-api.nvim_command [[autocmd CursorMovedI * lua require'utils'.clearBlameVirtText()]]
+api.nvim_command [[autocmd CursorHold   * lua require'blame'.blameVirtText()]]
+api.nvim_command [[autocmd CursorMoved  * lua require'blame'.clearBlameVirtText()]]
+api.nvim_command [[autocmd CursorMovedI * lua require'blame'.clearBlameVirtText()]]
 api.nvim_set_hl(0, "GitLens", {
     link = "Comment"
 })
